@@ -36,7 +36,9 @@
 				// Error Lens
 				"usernamehw.errorlens",
 				// Console Ninja
-				"WallabyJs.console-ninja"
+				"WallabyJs.console-ninja",
+				// Material Icon Theme
+				"PKief.material-icon-theme"
 			]
 		}
 	}
