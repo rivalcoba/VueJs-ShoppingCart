@@ -1,5 +1,5 @@
-# Install container with node and typescript compiler
-FROM mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye
+# Install Node version 20
+FROM node:20
 
-# Install Ionic CLI
-RUN npm install -g @ionic/cli
+# Install Ionic CLI and TypeScript compiler
+RUN npm install -g @ionic/cli typescript
