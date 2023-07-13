@@ -5,6 +5,11 @@ const header = ref('App Lista de compras');
 
 <template>
   <h1> <i class="material-icons shopping-cart-icon">local_mall</i> {{ header }}</h1>
+  <ul>
+    <li>10 bolillos</li>
+    <li>1 lata de frijoles</li>
+    <li>1 lata de atún</li>
+  </ul>
 </template>
 
 <style scoped>
