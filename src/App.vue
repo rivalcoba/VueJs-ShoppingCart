@@ -13,22 +13,20 @@ const newItemHighPriority = ref(false);
 <template>
   <h1> <i class="material-icons shopping-cart-icon">local_mall</i> {{ header }}</h1>
   <!-- Agrupando Entradas de usuario -->
-  <div class="add-item form">
+  <form class="add-item form" v-on:submit.prevent="items.push({id: items.length + 1, label: newItem})">
     <!-- Entrada de texto -->
     <input 
       type="text" 
       placeholder="Add Item" 
-      v-on:keyup.enter="items.push({id: items.length + 1, label: newItem})" 
       v-model.trim="newItem">
     <!-- Radio Buttons -->
     <label><input type="checkbox" v-model="newItemHighPriority">Alta Prioridad</label>
     <!-- Boton -->
     <button 
-      class="btn btn-primary" 
-      v-on:click="items.push({id: items.length + 1, label: newItem})">
+      class="btn btn-primary">
       Salvar Articulo
     </button>
-  </div>
+  </form>
   <!-- Lista -->
   <ul>
     <li v-for="{ id, label } in items" v-bind:key="id">
