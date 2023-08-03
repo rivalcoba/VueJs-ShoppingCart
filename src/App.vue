@@ -8,12 +8,18 @@ const items = ref([
 ]);
 const newItem = ref('');
 const newItemHighPriority = ref(false);
+// Metodo para agregar nuevos elementos a la lista
+const saveItem = () => {
+  items.value.push({ id: items.value.length + 1, label: newItem.value });
+  // Reiniciendo la entrada de texto
+  newItem.value = "";
+};
 </script>
 
 <template>
   <h1> <i class="material-icons shopping-cart-icon">local_mall</i> {{ header }}</h1>
   <!-- Agrupando Entradas de usuario -->
-  <form class="add-item form" v-on:submit.prevent="items.push({id: items.length + 1, label: newItem})">
+  <form class="add-item form" v-on:submit.prevent="saveItem">
     <!-- Entrada de texto -->
     <input 
       type="text" 
