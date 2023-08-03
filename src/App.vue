@@ -15,7 +15,11 @@ const newItemHighPriority = ref(false);
   <!-- Agrupando Entradas de usuario -->
   <div class="add-item form">
     <!-- Entrada de texto -->
-    <input type="text" placeholder="Add Item" v-model.trim="newItem">
+    <input 
+      type="text" 
+      placeholder="Add Item" 
+      v-on:keyup.enter="items.push({id: items.length + 1, label: newItem})" 
+      v-model.trim="newItem">
     <!-- Radio Buttons -->
     <label><input type="checkbox" v-model="newItemHighPriority">Alta Prioridad</label>
     <!-- Boton -->
