@@ -39,6 +39,7 @@ const saveItem = () => {
       🔹 {{ label }}
     </li>
   </ul>
+  <p v-if="items.length === 0">🥀 No hay elementos en la lista</p>
 </template>
 
 <style scoped>
