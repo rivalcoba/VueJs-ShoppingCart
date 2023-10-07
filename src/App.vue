@@ -13,9 +13,9 @@ const doEdit = (edit)=>{
 
 const header = ref('App Lista de compras');
 const items = ref([
-  {id: 1, label: '10 bolillos'},
-  {id: 2, label: '1 lata de frijoles'},
-  {id: 3, label: '2 lata de atún'}
+  {id: 1, label: '10 bolillos', purchased: true, highPriority: true },
+  {id: 2, label: '1 lata de frijoles', purchased: false, highPriority: true },
+  {id: 3, label: '2 lata de atún', purchased: true, highPriority: false }
 ]);
 const newItem = ref('');
 const newItemHighPriority = ref(false);
@@ -50,7 +50,9 @@ const saveItem = () => {
   </form>
   <!-- Lista -->
   <ul>
-    <li v-for="{ id, label } in items" v-bind:key="id">
+    <li v-for="{ id, label, purchased, highPriority } in items" 
+      :class="{strikeout: purchased, priority: highPriority}"
+      v-bind:key="id">
       🔹 {{ label }}
     </li>
   </ul>
