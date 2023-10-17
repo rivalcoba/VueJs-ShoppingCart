@@ -9,6 +9,7 @@ const doEdit = (edit)=>{
   // en caso de que se oculte o muestre
   // el formulario
   newItem.value = "";
+  newItemHighPriority.value = false;
 };
 
 const header = ref('App Lista de compras');
@@ -21,9 +22,14 @@ const newItem = ref('');
 const newItemHighPriority = ref(false);
 // Metodo para agregar nuevos elementos a la lista
 const saveItem = () => {
-  items.value.push({ id: items.value.length + 1, label: newItem.value });
+  items.value.push({ 
+    id: items.value.length + 1, 
+    label: newItem.value,
+    highPriority: newItemHighPriority.value
+  });
   // Reiniciendo la entrada de texto
   newItem.value = "";
+  newItemHighPriority.value = false;
 };
 // Alternando estado de compra del item
 const togglePurchased = (item) => {
