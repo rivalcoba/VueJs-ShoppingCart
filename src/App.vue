@@ -25,6 +25,10 @@ const saveItem = () => {
   // Reiniciendo la entrada de texto
   newItem.value = "";
 };
+// Alternando estado de compra del item
+const togglePurchased = (item) => {
+  item.purchased = !item.purchased;
+};
 </script>
 
 <template>
@@ -50,16 +54,9 @@ const saveItem = () => {
   </form>
   <!-- Lista -->
   <ul>
-    <li v-for="{ id, label, purchased, highPriority } in items" 
+    <li v-for="({ id, label, purchased, highPriority }, index) in items" 
       :class="{strikeout: purchased, priority: highPriority}"
-      v-bind:key="id">
-      🔹 {{ label }}
-    </li>
-  </ul>
-  <!-- Lista duplicada -->
-  <ul>
-    <li v-for="{ id, label, purchased, highPriority } in items" 
-    :class="[purchased?'strikeout':'', highPriority?'priority':'']"
+      @click="togglePurchased(items[index])"
       v-bind:key="id">
       🔹 {{ label }}
     </li>
