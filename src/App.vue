@@ -56,6 +56,14 @@ const saveItem = () => {
       🔹 {{ label }}
     </li>
   </ul>
+  <!-- Lista duplicada -->
+  <ul>
+    <li v-for="{ id, label, purchased, highPriority } in items" 
+    :class="[purchased?'strikeout':'', highPriority?'priority':'']"
+      v-bind:key="id">
+      🔹 {{ label }}
+    </li>
+  </ul>
   <p v-if="items.length === 0">🥀 No hay elementos en la lista</p>
 </template>
 
