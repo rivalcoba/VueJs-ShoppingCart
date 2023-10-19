@@ -68,7 +68,7 @@ const reversedItems = computed(() => [...items.value].reverse());
   <!-- Lista -->
   <ul>
     <li v-for="({ id, label, purchased, highPriority }, index) in reversedItems"
-      :class="{ strikeout: purchased, priority: highPriority }" @click="togglePurchased(items[index])" v-bind:key="id">
+      :class="{ strikeout: purchased, priority: highPriority }" @click="togglePurchased(reversedItems[index])" v-bind:key="id">
       🔹 {{ label }}
     </li>
   </ul>
