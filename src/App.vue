@@ -1,9 +1,9 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 // Modo edición
 const editing = ref(false);
 // Funcion que alterna el valor de la variable editing
-const doEdit = (edit)=>{
+const doEdit = (edit) => {
   editing.value = edit;
   // Limpiando la entrada de texto
   // en caso de que se oculte o muestre
@@ -14,16 +14,16 @@ const doEdit = (edit)=>{
 
 const header = ref('App Lista de compras');
 const items = ref([
-  {id: 1, label: '10 bolillos', purchased: true, highPriority: true },
-  {id: 2, label: '1 lata de frijoles', purchased: false, highPriority: true },
-  {id: 3, label: '2 lata de atún', purchased: true, highPriority: false }
+  { id: 1, label: '10 bolillos', purchased: true, highPriority: true },
+  { id: 2, label: '1 lata de frijoles', purchased: false, highPriority: true },
+  { id: 3, label: '2 lata de atún', purchased: true, highPriority: false }
 ]);
 const newItem = ref('');
 const newItemHighPriority = ref(false);
 // Metodo para agregar nuevos elementos a la lista
 const saveItem = () => {
-  items.value.push({ 
-    id: items.value.length + 1, 
+  items.value.push({
+    id: items.value.length + 1,
     label: newItem.value,
     highPriority: newItemHighPriority.value
   });
@@ -35,6 +35,11 @@ const saveItem = () => {
 const togglePurchased = (item) => {
   item.purchased = !item.purchased;
 };
+
+// Propiedad computada
+const characterCount = computed(() => {
+  return newItem.value.length;
+});
 </script>
 
 <template>
@@ -46,24 +51,22 @@ const togglePurchased = (item) => {
   <!-- Agrupando Entradas de usuario -->
   <form class="add-item form" v-if="editing" v-on:submit.prevent="saveItem">
     <!-- Entrada de texto -->
-    <input 
-      type="text" 
-      placeholder="Add Item" 
-      v-model.trim="newItem">
+    <input type="text" placeholder="Add Item" v-model.trim="newItem">
     <!-- Radio Buttons -->
     <label><input type="checkbox" v-model="newItemHighPriority">Alta Prioridad</label>
     <!-- Boton -->
-    <button :disabled="newItem.length === 0" 
-      class="btn btn-primary">
+    <button :disabled="newItem.length === 0" class="btn btn-primary">
       Salvar Articulo
     </button>
+  <!-- Contador -->
+  <p class="counter">
+    {{characterCount}} / 200
+  </p>
   </form>
   <!-- Lista -->
   <ul>
-    <li v-for="({ id, label, purchased, highPriority }, index) in items" 
-      :class="{strikeout: purchased, priority: highPriority}"
-      @click="togglePurchased(items[index])"
-      v-bind:key="id">
+    <li v-for="({ id, label, purchased, highPriority }, index) in items"
+      :class="{ strikeout: purchased, priority: highPriority }" @click="togglePurchased(items[index])" v-bind:key="id">
       🔹 {{ label }}
     </li>
   </ul>
@@ -72,6 +75,7 @@ const togglePurchased = (item) => {
 
 <style scoped>
 .shopping-cart-icon {
-  font-size: 2rem; /* Adjust the font-size value as per your desired size */
+  font-size: 2rem;
+  /* Adjust the font-size value as per your desired size */
 }
 </style>
