@@ -9,11 +9,11 @@ const shoppingIcon = ref('material-icons shopping-cart-icon');
 // Creando una referencia reactiva
 // para alamacenar el valor de la lista
 const items = ref([
-  { id: 0, label: 'Leche', purchased: false, highPriority: true },
-  { id: 1, label: 'Arroz', purchased: false, highPriority: false },
-  { id: 2, label: 'Carne', purchased: true, highPriority: false },
-  { id: 3, label: 'Pan', purchased: false, highPriority: true },
-  { id: 4, label: 'Huevos', purchased: true, highPriority: true }
+  // { id: 0, label: 'Leche', purchased: false, highPriority: true },
+  // { id: 1, label: 'Arroz', purchased: false, highPriority: false },
+  // { id: 2, label: 'Carne', purchased: true, highPriority: false },
+  // { id: 3, label: 'Pan', purchased: false, highPriority: true },
+  // { id: 4, label: 'Huevos', purchased: true, highPriority: true }
 ]);
 const togglePurchased = (item) => {
   item.purchased = !item.purchased
@@ -24,13 +24,19 @@ const newItemHighPriority = ref(false)
 const saveItems = () => {
   // Agrega un nuevo elemento a la lista
   // proveniente de la caja de texto
-  items.value.push({ id: items.value.length, label: newItem.value })
+  items.value.push(
+    { id: items.value.length, 
+      label: newItem.value,
+      highPriority: newItemHighPriority.value
+    })
   // Borramos el contenido de la caja de texto
   newItem.value = "";
+  newItemHighPriority.value = false;
 };
 const doEdit = (edit) => {
   editing.value = edit;
   newItem.value = "";
+  newItemHighPriority.value = false;
 }
 const editing = ref(false);
 </script>
