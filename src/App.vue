@@ -15,6 +15,11 @@ const items = ref([
   // { id: 3, label: 'Pan', purchased: false, highPriority: true },
   // { id: 4, label: 'Huevos', purchased: true, highPriority: true }
 ]);
+const reversedItems = computed(()=>{
+  // Regresar una version invertida
+  // del arreglo "items"
+  return [...items.value].reverse();
+});
 const togglePurchased = (item) => {
   item.purchased = !item.purchased
 };
@@ -83,8 +88,8 @@ const editing = ref(false);
   <!-- Entrega de lista -->
   <ul>
     <li
-      v-for="({ id, label, purchased, highPriority }, index) in items"
-      @click="togglePurchased(items[index])"
+      v-for="({ id, label, purchased, highPriority }, index) in reversedItems"
+      @click="togglePurchased(reversedItems[index])"
       :class="{priority: highPriority, strikeout:purchased}"
       v-bind:key="id">
       ⭐ {{ label }}
